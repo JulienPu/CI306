@@ -15,3 +15,12 @@ create table hd_article(
 	primary key (id),
 	unique key (title)
 )ENGINE=innodb default charset=utf8;
+create table hd_user(
+	id mediumint(8) unsigned not null auto_increment ,
+	user char(20) not null,
+	pwd varchar(32) not null,
+	loginTime int unsigned not null comment '登录时间',
+	loginIp varchar(32) not null comment '上次登录的IP',
+	primary key (id),
+	unique key (user)
+)ENGINE=innodb default charset=utf8;

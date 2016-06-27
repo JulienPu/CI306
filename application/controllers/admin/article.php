@@ -16,19 +16,19 @@ class Article extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		$this->load->library('pagination');
+		// $this->load->library('pagination');
 
-		$totalRow=$this->db->count_all_results('article');
-		echo $totalRow;die;
-		$RowsPerPage=2;
+		// $totalRow=$this->db->count_all_results('article');
+		// echo $totalRow;die;
+		// $RowsPerPage=2;
 
-		$config['base_url'] = base_url('admin.php/article/index');
-		$config['total_rows'] =$totalRow;
-		$config['per_page'] = $RowsPerPage;
+		// $config['base_url'] = base_url('admin.php/article/index');
+		// $config['total_rows'] =$totalRow;
+		// $config['per_page'] = $RowsPerPage;
 
-		$this->pagination->initialize($config);
+		// $this->pagination->initialize($config);
 
-		echo $this->pagination->create_links();
+		// echo $this->pagination->create_links();
 		$data['article']=$this->article->check();
 		$this->load->view('admin/check_article.html',$data);
 	}
