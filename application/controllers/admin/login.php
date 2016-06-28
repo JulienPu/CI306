@@ -13,7 +13,8 @@ class Login extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		 
+ 		// $user=$this->session->userdata('user');
+ 		// echo 1;die;
 		// $data['captcha']=$this->captcha();
 		$this->load->view('admin/login.html');
 
@@ -26,20 +27,24 @@ class Login extends CI_Controller {
 		// 加载辅助函数
 		$this->load->helper('captcha');
 		// 配置验证码参数
+		$path='./application/captcha/';
 		$config=array(
-		    'img_path'  => './application/captcha/',
-		    'img_url'   => base_url('application/captcha/'),
+		    'img_path'  => $path,
+		    'img_url'   => base_url('/application/captcha/'),
 		    'img_width' => 80,
 		    'img_height'    => 30,
 		    'word_length'   => 4,
 		    'font_size' => 22,
-		    'pool'      => '0123456789abcdefghjkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ',
+		    'pool'      => '0123456789ab',
 		 );
 
 		 $captcha=create_captcha($config);
-		 $data['captcha']=$captcha['filename'];
 		 $_SESSION['captcha']=$captcha['word'];
-		 echo $data['captcha'];
+		 $data['captcha']=base_url('application/captcha').'/'.$captcha['filename'];
+		 // $data['captcha'].=$captcha['filename'];
+		 echo json_encode($data);
+		 // p($data);die;
+		 // p($data);die;
 	}
 	/**
 	 * [check 登录验证]
@@ -52,9 +57,9 @@ class Login extends CI_Controller {
 		 $data['pwd']=md5($this->input->post('passwd'));
 		 // $data['pwd']=$this->input->post('passwd');
 		 $captcha=$this->input->post('captcha');
-		 // if (strtolower($captcha)!==strtolower($_SESSION['captcha'])) {
-		 // 	e('验证码错误');
-		 // }
+		 if (strtolower($captcha)!==strtolower($_SESSION['captcha'])) {
+		 	e('验证码错误');
+		 }
 		 // p($data);die;
 		 $check=$this->login->checkLogin($data);
 		 if (!$check) {
@@ -78,19 +83,23 @@ class Login extends CI_Controller {
 
 		 	$PHP=substr($version, strpos($version,'PHP'));
 			 // $this->load->library('session');		 
-			// $res=array(
-		 // 		'user'=>$data['user'],
-		 // 		'PHP'=>$PHP,
-		 // 		);
-		 // 	$this->session->set_userdata($res);
+			$res=array(
+		 		'user'=>$data['user'],
+		 		'PHP'=>$PHP,
+		 		);
+		 	$this->session->set_userdata($res);
 		 	$_SESSION['user']=$data['user'];
 		 	$_SESSION['PHP']=$PHP;
 		 	// p($_SESSION);die;
-		 	// s('admin.php/admin/index','登录成功');
-		 	$this->load->view('admin/index.html');
+		 	s('admin.php/admin/index','登录成功');
+		 	// $this->load->view('admin/index.html');
 		 }else{
 		 	e('登录失败，请重试！');
 		 }
+	}
+	public function logout(){
+		$this->session->sess_destroy();
+		s('admin.php/login/index','退出成功');
 	}
 	
 	

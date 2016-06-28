@@ -3,8 +3,19 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<link rel="stylesheet" href="<?php echo base_url('application/public/admin') ?>/css/login.css" />
-	<script type="text/javascript" src="<?php echo base_url('application/public/admin')?>/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url('application/public/admin')?>/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url('application/public/admin')?>/js/login.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#capt').click();
+		});
+		function getCode(obj){
+			 $.get("<?php echo base_url('admin.php/login/captcha') ?>", "", function(responseData){
+                var responseData = eval("("+responseData+")");
+                    $("#capt").attr("src", responseData.captcha);
+            });
+		}
+	</script>
 	<title></title>
 </head>
 <body>
@@ -17,7 +28,7 @@
 			<!-- 验证码 -->
 			<div class="captcha">
 				<!-- <?php echo base_url('admin.php/login/captcha') ?> -->
-			 <!-- <img src="<?php echo base_url('admin.php/login/captcha')?>"> -->
+			 <img src="" onclick="getCode(this)" id="capt">
 			</div>
 		</form>
 		<div class="four_bj">

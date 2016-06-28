@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Category extends CI_Controller {
+class Category extends MY_Controller {
 	/**
 	 * 构造函数，自动载入QR模型
 	 */
