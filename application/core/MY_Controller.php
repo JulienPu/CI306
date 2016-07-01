@@ -10,8 +10,12 @@ class MY_Controller extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$user = $this->session->userdata('user');
+		$isLogin = $this->session->userdata('isLogin');
+		// if(!$user||!$isLogin) {
 		if(!$user) {
-			redirect('admin.php/login/index');
+			// redirect  CI定义的URL辅助函数
+			// 第二个参数可以使用auto,location,以及refresh
+			redirect(base_url('admin.php/login/index'),'location');
 		}
 	}
 

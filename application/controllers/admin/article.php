@@ -67,9 +67,11 @@ class Article extends MY_Controller {
 		if ($error) {
 			e($error);
 		}
+			// ①载入表单验证类
+		$this->load->library('form_validation');
+		$status=$this->form_validation->run('article');
 		// 上传成功，接收返回的文件信息
 		$upload=$this->upload->data();
-		// p($upload);die;
 		
 		// 处理缩略图
 		$arr['image_library'] = 'gd2';
@@ -90,18 +92,6 @@ class Article extends MY_Controller {
 		if (!$thumb) {
 			e('生成缩略图失败');
 		}
-			// ①载入表单验证类
-		$this->load->library('form_validation');
-		// ②设置校验规则
-		// 可以单个配置也可以创建单独的form_valaditon文件进行统一设置，便于多次使用
-		// $this->form_validation->set_rules('title','文章标题','required|min_length[5]');
-		// $this->form_validation->set_rules('type','类型','required|integer');
-		// $this->form_validation->set_rules('cid','栏目','integer');
-		// $this->form_validation->set_rules('abstract','摘要','required|max_length[110]');
-		// $this->form_validation->set_rules('content','内容','required|max_length[2000]');
-		// san验证
-		// 展示错误信息，则需要在展示表单的时候加载辅助函数
-		$status=$this->form_validation->run('article');
 		if($status){
 			// 接收数据
 			$title    =$this->input->post('title');

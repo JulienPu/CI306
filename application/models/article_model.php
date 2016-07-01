@@ -21,9 +21,9 @@ class Article_model extends CI_model{
 	 * 修改文章信息
 	 */
 	public function update($id){
-		$data=$this->db->where(array('id'=>$id))->get('article')->result_array();
+		// $data=$this->db->where(array('id'=>$id))->get('article')->result_array();
 		// p($data);die;
-		return $data;
+		// return $data;
 	}
 
 

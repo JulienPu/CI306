@@ -85,14 +85,12 @@ class Login extends CI_Controller {
 			 // $this->load->library('session');		 
 			$res=array(
 		 		'user'=>$data['user'],
+		 		'isLogin'=>TRUE,
 		 		'PHP'=>$PHP,
+		 		'uid'=>$id,
 		 		);
 		 	$this->session->set_userdata($res);
-		 	$_SESSION['user']=$data['user'];
-		 	$_SESSION['PHP']=$PHP;
-		 	// p($_SESSION);die;
-		 	s('admin.php/admin/index','登录成功');
-		 	// $this->load->view('admin/index.html');
+		 	redirect(base_url('admin.php/admin/index'));
 		 }else{
 		 	e('登录失败，请重试！');
 		 }

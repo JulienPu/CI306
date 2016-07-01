@@ -39,4 +39,23 @@ $config=array(
 			'rules'=>'required|max_length[20]',
 			),
 	),
+	// 修改密码验证规则
+	'changePwd'=>array(
+		// 对应的单个字段的验证规则
+		array(
+			'field'=>'passwd',
+			'label'=>'原始密码',
+			'rules'=>'required|min_length[6]',
+			),
+		array(
+			'field'=>'passwdF',
+			'label'=>'新密码',
+			'rules'=>'required|min_length[6]|alpha_dash',
+			),
+		array(
+			'field'=>'passwdS',
+			'label'=>'确认密码',
+			'rules'=>'required|matches[passwdF]|min_length[6]|alpha_dash',
+			),
+	),
 );
