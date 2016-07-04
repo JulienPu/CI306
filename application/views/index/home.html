@@ -12,19 +12,19 @@
 					<h2>最新文章..</h2>
 				</div>
 				<ul>
-					<!-- <?php foreach($art as $v): ?> -->
+					<?php foreach($recent as $v): ?>
 					<li>
 						<div class='post-image'>
 							<span>
-								<a href="<?php echo site_url('a/' . $v['aid']) ?>"><img width="" src="<?php echo base_url() . 'uploads/'. $v['thumb']?>" /></a>
+								<a href=""><img width="" src="<?php echo base_url() . 'application/upload'."/". $v['thumb']?>" /></a>
 							</span>	
 						</div>	
 						<div class='post-content'>
-							<a href="<?php echo site_url('a/' . $v['aid']) ?>"><h3><?php echo $v['title'] ?></h3></a>
-							<p><?php echo $v['info'] ?></p>
+							<a href="<?php echo site_url('article/detail' ."/". $v['id']) ?>"><h3><?php echo $v['title'] ?></h3></a>
+							<p><?php echo $v['abstract'] ?></p>
 						</div>
 					</li>
-					<!-- <?php endforeach ?> -->
+					<?php endforeach ?>
 				</ul>
 			</div>
 			<div  class='list'>
@@ -32,19 +32,19 @@
 					<h2>热门文章..</h2>
 				</div>
 				<ul>
-					<!-- <?php foreach($hot as $v): ?> -->
+					<?php foreach($hot as $v): ?>
 					<li>
 						<div class='post-image'>
 							<span>
-								<a href="<?php echo site_url('a/' . $v['aid']) ?>"><img width="" src="<?php echo base_url() . 'uploads/'. $v['thumb']?>" /></a>
+								<a href="<?php echo site_url('a/' . $v['id']) ?>"><img width="" src="<?php echo base_url() . 'application/upload'."/". $v['thumb']?>" /></a>
 							</span>	
 						</div>	
 						<div class='post-content'>
-							<a href="<?php echo site_url('a/' . $v['aid']) ?>"><h3><?php echo $v['title'] ?></h3></a>
-							<p><?php echo $v['info'] ?></p>
+							<a href="<?php echo site_url('article/detail' ."/". $v['id']) ?>"><h3><?php echo $v['title'] ?></h3></a>
+							<p><?php echo $v['abstract'] ?></p>
 						</div>
 					</li>
-					<!-- <?php endforeach ?> -->
+					<?php endforeach ?>
 	
 				</ul>
 			</div>
