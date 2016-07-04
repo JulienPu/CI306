@@ -27,7 +27,7 @@ $config=array(
 		array(
 			'field'=>'content',
 			'label'=>'内容',
-			'rules'=>'required|max_length[2000]',
+			'rules'=>'required|max_length[5000]',
 			)
 	),
 	// 栏目验证规则

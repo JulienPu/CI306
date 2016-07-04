@@ -75,6 +75,8 @@ class Login extends CI_Controller {
 		 // 验证通过，更新登录IP以及登录时间
 		 $result=$this->login->updateLogin($id,$update);
 		 if ($result) {
+		 	//删除作废的验证码图片
+		 	$this->deleteCaptcha();
 		 	// 用户信息持久化
 		 	// $res['user']=$data['user'];
 		 	// $res['ip']=$_SERVER['REMOTE_ADDR'];
@@ -95,11 +97,26 @@ class Login extends CI_Controller {
 		 	e('登录失败，请重试！');
 		 }
 	}
+	/**
+	 * [logout 退出登录]
+	 * @return [type] [description]
+	 */
 	public function logout(){
 		$this->session->sess_destroy();
 		s('admin.php/login/index','退出成功');
 	}
-	
+	/**
+	 * 删除过期的验证码图片
+	 */
+	public function deleteCaptcha(){
+		$directory='./application/captcha/';
+		$mask = $directory."*.jpg";
+		if (glob($mask)) {
+			//glob()返回一个包含有匹配文件／目录的数组。如果出错返回 FALSE。 
+			//array_map()每一个数组元素都经过回调函数处理
+			array_map( "unlink", glob($mask));
+		}
+	}
 	
 
 	

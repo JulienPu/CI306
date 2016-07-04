@@ -41,8 +41,7 @@
 		</tr>
 		<tr>
 			<td>数据库信息</td>
-			<td><?php $link=mysql_connect('localhost','root','root');
-			echo mysql_get_server_info($link) ?></td>
+			<td><?php echo $this->db->version(); ?></td>
 		</tr>
 
 </table>
