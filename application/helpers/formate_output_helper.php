@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		echo "<pre>";
 		print_r($arr);
 		echo "</pre>";
+		die;
 	}
 	/**
 	 * 成功跳转函数

@@ -19,7 +19,10 @@ class Home_model extends CI_model{
 	 * @return [type] [description]
 	 */
 	public function check_title(){
-		return $this->db->select('id,title')->from('article')->where(array('type'=>'1'))->where(array('type'=>'1'))->limit(15,5)->get()->result_array();
+		$data=$this->db->select('id,title,hits')->order_by('hits','desc')->get_where('article',array(),10)->result_array();
+		 // echo $this->db->last_query();die;
+		return $data; 
+
 	}
 
 

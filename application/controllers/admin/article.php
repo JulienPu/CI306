@@ -129,6 +129,7 @@ class Article extends MY_Controller {
 			$cid      =$this->input->post('cid');
 			$abstract =$this->input->post('abstract');
 			$content  =$this->input->post('content');
+			$author  =$this->session->userdata('user');
 			// 保存上传原图的文件信息
 			// 使用缩略图时直接拼接
 			$thumb    =$upload['raw_name'].'_thumb'.$upload['file_ext'];
@@ -142,6 +143,7 @@ class Article extends MY_Controller {
 				'content'=>$content,
 				'thumb'=>$thumb,
 				'pubdate'=>$pubdate,
+				'author'=>$author,
 				);
 			return $info;
 		}else{

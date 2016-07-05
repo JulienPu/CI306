@@ -8,6 +8,7 @@ class Home extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('home_model','home');
+		$this->load->model('category_model','cate');
 	}
 
 	/**
@@ -18,6 +19,7 @@ class Home extends CI_Controller {
 		$data['recent'] =$this->home->check_recent();
 		$data['hot']    =$this->home->check_hot();
 		$data['title']    =$this->home->check_title();
+		$data['category']=$this->cate->check();
 		$this->load->view('index/home.html',$data);
 	}
 

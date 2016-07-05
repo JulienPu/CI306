@@ -3,7 +3,7 @@
 				<h2>文章标题</h2>
 				<ul class='flink'>
 					<?php foreach ($title as $v):?>
-					<li><a href="<?php echo site_url('article/detail' ."/". $v['id']) ?>"><?php echo $v['title']?></a></li>
+					<li><a href="<?php echo site_url('detail/index' ."/". $v['id']) ?>"><?php echo $v['title']?></a></li>
 					<?php endforeach ?>
 				</ul>
 			</div>
