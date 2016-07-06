@@ -16,13 +16,18 @@
         });
 	});
 </script>
+<style type="text/css">
+	#top{
+    height: 60px;
+}
+</style>
 </head>
 <body>
 	<div id="top">
 		<div class='pos'>
 			<div class='user'>
-			 	<a href="">登录</a>
-				<a href="">注册</a>
+			 	<a href="<?php echo site_url('account/login')?>">登录</a>
+				<a href="<?php echo site_url('account/register')?>">注册</a>
 			</div>
 		</div>	
 	</div>
@@ -31,9 +36,6 @@
 			
 		</div>
 		<div class='navigation'>
-			<a href="">首页</a>
-			<a href="">首页</a>
-			<a href="">首页</a>
 			<a href="">首页</a>
 		</div>
 	</div>
@@ -59,25 +61,39 @@
 				 <br/>
 				 <br/>
 				 <?php echo $detail[0]['content']?>
- 				<br/>
-				 <br/>
-				 	<br/>
-				 <br/>	
+				<br/><br/><br/><br/>	
 						
 			</div> 
-			 <br/>
-				 <br/>
+			 <br/><br/>
+				 
 			<div class="comment">
-
-			<p >评论区</p>
+				<br/><br/><br/><br/>	
+				<h2 >评论区</h2><br/>
 				<textarea>1</textarea><br>
-					<input type="submit" value="提交" />
+				<input type="submit" value="提交" id="comment_submit" />
 			</div>		
 
 			<div class="showlist">
-				<p >精彩评论</p>
-				<textarea>1</textarea><br>
-					<input type="submit" value="提交" />
+					<br/><br/>	
+					<h2 >精彩评论</h2>
+					<ul>
+						<li class ="discuss_item" id="cid6110447476643201027">
+							<div class="discuss_opr">
+								<span class="media_tool_meta tips_global meta_praise js_comment_praise " data-status="0" data-content-id="6110447476643201027"> <i class="icon_praise_gray"></i>
+									<span class="praise_num">339</span>
+								</span>
+							</div>
+							<div class="user_info"> <strong class="nickname">刘志斌</strong>
+								<img class="avatar" src="http://wx.qlogo.cn/mmopen/vi_24/ZBicLbWxd8ZATZ75KyNnZxSOawY7hkIic2JsyjFQPOm5CvHfvumzHYtzU08hLSzx8HwnyGPhsjBew/96"></div>
+							<div class="discuss_message">
+								<span class="discuss_status"></span>
+								<div class="discuss_message_content">
+									尽管多姿多彩的人生旅途是无穷无尽的，但我也会有觉得累了的时候，然后停下来想一想，每一次我在料理人生感悟的时候，德芬老师总是“无处不在”！
+								</div>
+							</div>
+							<p class="discuss_extra_info">昨天</p>
+						</li>
+					</ul>
 			</div>		
 		</div>
 		<div class='sidebar'>

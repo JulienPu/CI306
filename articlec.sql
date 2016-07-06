@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50524
 File Encoding         : 65001
 
-Date: 2016-07-05 17:37:13
+Date: 2016-07-06 17:16:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,7 +38,7 @@ CREATE TABLE `hd_article` (
 -- ----------------------------
 -- Records of hd_article
 -- ----------------------------
-INSERT INTO `hd_article` VALUES ('1', '2', '你棒出大电影了，快卖肾来凑你棒出大电影了', '2', '14676228699713_thumb.jpg', 'Bigbang要出电影了。\r\n嗯，并不是五位歌手已经全部演技精进到movie star的地步（TOP不服），而是一部纪录片形式的大电影，告诉观众2015到2016年MADE巡演过程中最真实的BIGBANG。\r\n', '<p>Bigbang不失章法的RAP，没有束缚的穿着，街头舞蹈，随意的台风，还有调动性强烈的歌词。宣传主V.I.P，没有新人的羞涩，歌词中不断重复出现的V.I.P.霸气地宣扬自己。衣服、项链上面都印着闪耀的BIGBANG，张扬得一塌糊涂</p>', '1467622869', '0', 'shisanyi', '9');
+INSERT INTO `hd_article` VALUES ('1', '2', '你棒出大电影了，快卖肾来凑你棒出大电影了', '2', '14676228699713_thumb.jpg', 'Bigbang要出电影了。\r\n嗯，并不是五位歌手已经全部演技精进到movie star的地步（TOP不服），而是一部纪录片形式的大电影，告诉观众2015到2016年MADE巡演过程中最真实的BIGBANG。\r\n', '<p>Bigbang不失章法的RAP，没有束缚的穿着，街头舞蹈，随意的台风，还有调动性强烈的歌词。宣传主V.I.P，没有新人的羞涩，歌词中不断重复出现的V.I.P.霸气地宣扬自己。衣服、项链上面都印着闪耀的BIGBANG，张扬得一塌糊涂</p>', '1467622869', '0', 'shisanyi', '50');
 INSERT INTO `hd_article` VALUES ('2', '1', ' 关注！今天下午河南将公布2016年高考', '2', '', '天下午河南将公布2016年高考分数线', '6月24日，大河网记者从河南省招生办公室获悉，今天下午3时30分，省招办将召开新闻发布会，公布2016年河南省普通高校招生录取控制分数线，请广大考生和家长关注大河网（www.dahe.cn），前方记者将及时发回报道', '0', '0', '', '5');
 INSERT INTO `hd_article` VALUES ('3', '3', '噩耗!骑士夺冠游行后发生枪击 两名女子被', '1', '', '　新浪体育讯　　北京时间6月23日，据《克里夫兰老实人报》报道，骑士队今天在克里夫兰举行了盛大的夺冠游行，但是在这场游行结束之后，克里夫兰市中心发生了一起枪击事件，有两名女子在这起事件中遭到枪击。', '　　据悉，枪击事件发生在当地时间下午5点以后，当时骑士队的夺冠游行已经结束。\r\n\r\n　　克里夫兰警方表示，两名女子遭到枪击，而开枪的男子已经被逮捕。这两名女子的伤势程度还不得而知。\r\n\r\n　　据了解，这起枪击事件发生在克里夫兰的塔城中心，当时大批量的骑士球迷正在离开游行现场。\r\n\r\n　　今天是克里夫兰这座城市历史上最重要的时刻之一，骑士队为克城带来了52年来的首个职业体育冠军，数百万球迷加入了这场盛大的夺冠游行，然而骑士夺冠游行后发生的这起枪击案却打破了原本的美好和平静。', '0', '0', '', '37');
 INSERT INTO `hd_article` VALUES ('7', '3', '骑士终于夺冠了 邓肯:我没骗人吧', '1', '', '吐槽不停，欢乐不止！新浪NBA神吐槽栏目继续登场！骑士夺冠 ，网友吐槽：邓肯当年说的对！', '　　呵呵呵哈哈哈42：本以为勇士能拿下骑士卫冕总冠军的，哎，果然我还是太天真了，勇士输球了，白天要上班到也没什么，可一到晚上，一个人躺在床上，就再也抑制不了内心的感情，一个人蒙在被子里偷偷地笑了起来', '1466750207', '0', '', '0');
@@ -88,6 +88,44 @@ INSERT INTO `hd_category` VALUES ('15', '犹太人');
 INSERT INTO `hd_category` VALUES ('16', '刚果河');
 INSERT INTO `hd_category` VALUES ('17', 'Celavland');
 INSERT INTO `hd_category` VALUES ('18', '南山南');
+
+-- ----------------------------
+-- Table structure for `hd_comment`
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_comment`;
+CREATE TABLE `hd_comment` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `aid` mediumint(8) unsigned NOT NULL COMMENT '文章ID',
+  `uid` mediumint(8) unsigned NOT NULL COMMENT '用户ID',
+  `content` text COMMENT '评论内容',
+  `pubdate` int(11) NOT NULL COMMENT '发布时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hd_comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `hd_member`
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_member`;
+CREATE TABLE `hd_member` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `nickname` varchar(32) NOT NULL COMMENT '昵称',
+  `profile` varchar(70) NOT NULL DEFAULT '' COMMENT '用户头像',
+  `address` varchar(70) DEFAULT NULL COMMENT '地址',
+  `phone` char(11) NOT NULL DEFAULT '',
+  `pwd` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `phone` (`phone`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hd_member
+-- ----------------------------
+INSERT INTO `hd_member` VALUES ('1', '', '', null, '13123456789', 'd41d8cd98f00b204e9800998ecf8427e');
+INSERT INTO `hd_member` VALUES ('5', '', '', null, '13112341234', 'd41d8cd98f00b204e9800998ecf8427e');
 
 -- ----------------------------
 -- Table structure for `hd_user`
