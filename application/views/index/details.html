@@ -14,12 +14,19 @@
 	        obj.error(function(){
 	        obj.remove();
         });
+	    $('#comment_submit').click(function(){
+	    	var comment=$('#comment_text').val();
+	    	alert(comment);
+	    });
 	});
 </script>
 <style type="text/css">
 	#top{
     height: 60px;
-}
+	}
+	#comment_text{
+		width:300px;height:100px;
+	}
 </style>
 </head>
 <body>
@@ -69,7 +76,7 @@
 			<div class="comment">
 				<br/><br/><br/><br/>	
 				<h2 >评论区</h2><br/>
-				<textarea>1</textarea><br>
+				<textarea id="comment_text" >1</textarea><br>
 				<input type="submit" value="提交" id="comment_submit" />
 			</div>		
 

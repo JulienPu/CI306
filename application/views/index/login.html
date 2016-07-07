@@ -5,14 +5,12 @@
     <title>注册</title>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
-    <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="/favicon.ico" />    
-    <link href="<?php echo base_url() . 'application/public/index/' ?>    
-    css/common.css" rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo base_url('application/public/index/css')?>    
-    /public.css">
+    <link href="<?php echo base_url('application/public/index')?>/css/common.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo base_url('application/public/index/css')?>/public.css">
     <link rel="stylesheet" href="<?php echo base_url('application/public/index/css')?>/passport.css">
+    <script type="text/javascript" src="<?php echo base_url('application/public/index')?>/js/jquery-1.8.3.min.js"></script>
    
 </head>
 <body>
@@ -25,35 +23,36 @@
         <!-- layout-inner -->
         <div class="layout-inner">
             <div class="passport-wrap">
-                <form action="/user/register" id="registerForm" method="post" class="form passport-form">
+                <form action="<?php echo site_url('account/login')?>" id="loginrForm" method="post" class="form passport-form">
                     <h2 class="legend">登录<a href="<?php echo site_url('account/register')?>" class="top-link">没有账号，去注册</a></h2>
 
                     <div class="form-item">
                         <div class="form-cont">
-                            <input type="text" name="mobile" value="" class="txt txt-h-xlarge" placeholder="手机号">
-                            
+                            <input type="text" name="mobile" id="mobile"  class="txt txt-h-xlarge" placeholder="手机号">
+                            <span style="font-size:14px;color:#F30E0E;display: none" id="phone_error" >**手机格式不正确，请重新输入**</span>
                         </div>
                     </div>
                 
                    
                     <div class="form-item">
                         <div class="form-cont">
-                            <input type="password" name="password" value="" class="txt txt-h-xlarge" placeholder="密码">
-                            
+                            <input type="password" name="password" id="password" value="" class="txt txt-h-xlarge" placeholder="密码">
+                            <span style="font-size:14px;color:#F30E0E;display: none" id="pwd_error" >**密码不能为空**</span>
                         </div>
                     </div>
                     <div class="form-item">
                         <div class="form-cont">
-                            <input type="text" name="validCode" class="txt txt-h-xlarge w-large float-left" placeholder="验证码">
+                            <input type="text" name="validCode" id="validCode" class="txt txt-h-xlarge w-large float-left" placeholder="验证码">
                             <div class="img-code float-right">
-                                <img id="validCode" src="/stickyImg?h=40&w=120" alt="" width="120" height="40" class="js-refresh" />
+                                <img src="" onclick="getCode(this)" id="capt">
                             </div>
+                            <span style="font-size:14px;color:#F30E0E;display: none" id="captcha_error" >**验证码不能为空**</span>
                         </div>
                     </div>
                     
                     <div class="form-item form-item-submit">
                         <div class="form-cont">
-                            <button type="submit" class="btn btn-primary btn-h-large">注&nbsp;&nbsp;&nbsp;册</button>
+                            <button type="submit" class="btn btn-primary btn-h-large">登&nbsp;&nbsp;&nbsp;录</button>
                         </div>
                     </div>
                 </form>
@@ -66,6 +65,58 @@
 
 <?php $this->load->view('index/foot.html')?>
 </div>
+<script type="text/javascript">
+            $(function(){
+                // 加载验证码
+                $('#capt').click();
+                // 验证手机号
+                $('#mobile').blur(function(){
+                    var phoneNumReg = /^1[34578]\d{8}\d$/gi;
+                    var phoneNum = $('#mobile').val();
+                    var phoneNumFlag = phoneNumReg.test(phoneNum);
+                    if (phoneNumFlag == false || phoneNum == "") {
+                        $('#phone_error').css('display','block');
+                        $('#mobile').val('');
+                    }
+                    if (phoneNumFlag == true) {
+                        $('#phone_error').css('display','none');
+                    }
+
+                });
+
+                // 验证验证码是否输入
+                 $('#validCode').blur(function(){
+                    var captcha = $('#validCode').val();
+                    if (captcha == "") {
+                        $('#captcha_error').css('display','block');
+                    }else{
+                        $('#captcha_error').css('display','none');
+                    }
+         
+                });
+
+
+                // 密码输入判断
+                 
+                 $('#password').blur(function(){
+                    var send = $('#password').val();
+                    if (send == "") {
+                        $('#pwd_error').css('display','block');
+                    }else{
+                        $('#pwd_error').css('display','none');
+                    }
+         
+                });
+
+            });
+            function getCode(obj){
+                 $.get("<?php echo site_url('account/captcha') ?>", "", function(responseData){
+                    var responseData = eval("("+responseData+")");
+                        $("#capt").attr("src", responseData.captcha);
+                });
+            }
+        
+    </script>
 <!--/ wrapper -->
 </body>
 </html>

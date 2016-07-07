@@ -12,7 +12,19 @@ class Account extends CI_Controller {
 	 */
 	public function login(){
 		if ($_SERVER['REQUEST_METHOD']=='POST') {
-
+			$data['phone']=$this->input->post('mobile');
+			$data['pwd']=md5($this->input->post('passwd'));
+			$captcha=$this->input->post('validCode');
+			 if (strtolower($captcha)!==strtolower($_SESSION['member'])) {
+			 	e('验证码错误');
+			 }else{
+				$result=$this->account->check_login($data);
+			 	if ($result) {
+			 		s('index.php/home/index','恭喜，登录成功');
+			 	}else{
+			 		e('登录失败，请重试！');
+			 	}
+			 }
 		}else{
 			$this->load->view('index/login.html');
 		}

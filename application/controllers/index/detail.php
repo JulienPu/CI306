@@ -23,7 +23,10 @@ class Detail extends CI_Controller {
 		// p($data);
 		$this->load->view('index/details.html',$data);
 	}
-	
+	public function do_comment(){
+		$text=$this->input->post('msg');
+		
+	}
 
 }
  	
